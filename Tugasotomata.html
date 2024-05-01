@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Online Accepter</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            font-size: larger;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 20px;
+        }
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            border-bottom-left-radius: 13cm;
+        }
+        nav div {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        #aboutInfo {
+            display: none;
+            margin-top: 200px;
+        }
+        form {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            background-image: url(gambar.jpeg);
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            min-height: 100px;
+        }
+    </style>
+    <h1>Make a Simple Online Accepter Accepting Scientific Number</h1>
+    <nav>
+        <div onclick="showForm('file')">File</div>
+                <label><input type="file" id="fileInput" /></label>
+        <div onclick="showForm('edit')">Edit</div>
+                <label><textarea id="editInput"></textarea></label>
+        <div onclick="showForm('run')">Run</div>
+                <label> <textarea id="runInput"></textarea></label>
+        <div onclick="showAboutUs()">About us</div>
+    </nav>
+    <form id="fileForm">
+    </form>
+    <form id="editForm">
+    </form>
+    <form id="runForm">
+    </form>
+    <br />
+    <label for="inputString">Input string:</label>
+    <input type="text" id="inputString" />
+    <br />
+    <div id="message">Yes, it is a number/No, it is not a number</div>
+    <div id="aboutInfo">
+        Nama: Las Dorenta Hutasoit<br />
+        NIM: 221011060119<br />
+        Sistem Informasi
+    </div>
+    <script>
+        const inputString = document.getElementById("inputString");
+        const message = document.getElementById("message");
+        const aboutInfo = document.getElementById("aboutInfo");
+        const fileForm = document.getElementById("fileForm");
+        const editForm = document.getElementById("editForm");
+        const runForm = document.getElementById("runForm");
+
+        inputString.addEventListener("input", function () {
+            const input = inputString.value.trim();
+            const isNumber = !isNaN(input) && isFinite(input);
+            message.textContent = isNumber ? "Yes, it is a number" : "No, it is not a number";
+        });
+
+        function showForm(formType) {
+            fileForm.style.display = "none";
+            editForm.style.display = "none";
+            runForm.style.display = "none";
+
+            if (formType === "file") {
+                fileForm.style.display = "block";
+            } else if (formType === "edit") {
+                editForm.style.display = "block";
+            } else if (formType === "run") {
+                runForm.style.display = "block";
+            }
+        }
+
+        function showAboutUs() {
+            aboutInfo.style.display = aboutInfo.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
